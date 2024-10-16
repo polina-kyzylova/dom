@@ -28,6 +28,7 @@ export default createGlobalStyle`
     font-family: 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
+    font-size: 1.2rem;
   }
 
   /* ширина scrollbar */
@@ -62,10 +63,12 @@ export const BaseButton = styled.button`
   width: fit-content;
   padding: 0.8rem 1.8rem;
   cursor: pointer;
-  background-color: ${theme.colors.lightRed};
   border-radius: 8px;
   font-size: 1rem;
   font-weight: 600;
+
+  background-color: ${(props) =>
+    props.color === "primary" ? theme.colors.lightRed : theme.colors.gray};
 `;
 
 export const BaseCard = css`
@@ -77,9 +80,14 @@ export const BaseCard = css`
 export const Title = styled.h3`
   font-size: 2rem;
   font-weight: 400;
-  padding-bottom: .4rem;
+  padding-bottom: 0.4rem;
 `;
 
-export const Subtitle = styled.p`
-  font-size: 1.2rem;
+export const ModalActions = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding-top: 2rem;
 `;

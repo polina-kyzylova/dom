@@ -6,32 +6,40 @@ import HomeItem from "../molecules/HomeItem";
 import AddIcon from "@mui/icons-material/Add";
 import Tooltip from "@mui/material/Tooltip";
 import { useAppSelector } from "../../core/hooks/hooks";
+import BaseModal from "../molecules/BaseModal";
+import CreateHomeForm from "../organisms/CreateHomeForm";
 
 const HomeContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  gap: 1rem;
+
   @media (max-width: 800px) {
     display: flex;
     flex-direction: column;
   }
-  gap: 1rem;
 `;
 
 export default function OnboardingPage() {
   const homeList = useAppSelector((state) => state.homeList);
 
+  const [open, setOpen] = React.useState(false);
+  const handleClickOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   return (
     <S.PageContainer>
       <MainTitle />
       <Tooltip title="Add new home">
-        <S.BaseButton onClick={() => console.log("Heeeeyy")}>
-          <AddIcon></AddIcon>
+        <S.BaseButton color="primary" onClick={() => handleClickOpen()}>
+          <AddIcon />
         </S.BaseButton>
       </Tooltip>
 
       <HomeContainer>
         {homeList.map((item) => (
           <HomeItem
+            key={item.home_id}
             home_title={item.home_title}
             address={item.address}
             home_type={item.home_type}
@@ -39,6 +47,10 @@ export default function OnboardingPage() {
           />
         ))}
       </HomeContainer>
+
+      <BaseModal open={open} handleClose={handleClose} title="Create new home">
+        <CreateHomeForm handleClose={handleClose} />
+      </BaseModal>
     </S.PageContainer>
   );
 }

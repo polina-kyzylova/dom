@@ -1,8 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
+export enum HomeType {
+  apart = 'Apartment',
+  house = 'House,'
+}
+
 export interface IHomeList {
-  home_type: "Apartment" | "House";
+  home_type: HomeType;
   home_title: string;
   address: string;
   home_id: number;
@@ -10,25 +15,25 @@ export interface IHomeList {
 
 const initialState: Array<IHomeList> = [
   {
-    home_type: "Apartment",
+    home_type: HomeType.apart,
     home_title: "Moscow appart",
     address: "Filevsky Boulevard, 9, Moscow",
     home_id: 111,
   },
   {
-    home_type: "Apartment",
+    home_type: HomeType.apart,
     home_title: "Sochi appart",
     address: "Tchaikovsky Street, 18, Sochi",
     home_id: 222,
   },
   {
-    home_type: "House",
+    home_type: HomeType.house,
     home_title: "Moscow house",
     address: "cottage village Beresta, 12, Krasnogorsk",
     home_id: 333,
   },
   {
-    home_type: "Apartment",
+    home_type: HomeType.apart,
     home_title: "Grandparents apart",
     address: "Tverskaya street, 4, Moscow",
     home_id: 444,
