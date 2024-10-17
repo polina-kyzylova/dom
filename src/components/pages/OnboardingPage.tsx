@@ -29,7 +29,7 @@ export default function OnboardingPage() {
 
   return (
     <S.PageContainer>
-      <MainTitle />
+      <MainTitle alignSelf="center" fontSize="large"/>
       <Tooltip title="Add new home">
         <S.BaseButton color="primary" onClick={() => handleClickOpen()}>
           <AddIcon />

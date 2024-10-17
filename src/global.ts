@@ -71,6 +71,14 @@ export const BaseButton = styled.button`
     props.color === "primary" ? theme.colors.lightRed : theme.colors.gray};
 `;
 
+
+/*
+  background-color: ${theme.colors.lightGray};
+  padding: ${theme.sizes.largeSpace};
+  border-radius: ${theme.sizes.borderRadius};
+*/
+
+
 export const BaseCard = css`
   background-color: ${theme.colors.lightGray};
   border-radius: 10px;
