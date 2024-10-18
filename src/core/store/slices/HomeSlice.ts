@@ -1,29 +1,32 @@
-import { createSlice } from '@reduxjs/toolkit'
-import type { PayloadAction } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
 
-export interface CounterState {
-  value: number
+export enum TemperMode {
+  auto = "auto",
+  custom = "custom",
+  off = "off",
 }
 
-const initialState: CounterState = {
-  value: 0,
+export interface HomeState {
+  temper_mode: TemperMode;
 }
+
+const initialState: HomeState = {
+  temper_mode: TemperMode.auto,
+};
 
 export const homeSlice = createSlice({
-  name: 'home',
+  name: "home",
   initialState,
   reducers: {
-    increment: (state) => {
-      state.value += 1
+    initHome: (state, action: PayloadAction<HomeState>) => {
+      state.temper_mode = action.payload.temper_mode;
     },
-    decrement: (state) => {
-      state.value -= 1
-    },
-    incrementByAmount: (state, action: PayloadAction<number>) => {
-      state.value += action.payload
+    changeTemperMode: (state, action) => {
+      state.temper_mode = action.payload.temper_mode;
     },
   },
-})
+});
 
-export const { increment, decrement, incrementByAmount } = homeSlice.actions
-export default homeSlice.reducer
+export const { initHome, changeTemperMode } = homeSlice.actions;
+export default homeSlice.reducer;

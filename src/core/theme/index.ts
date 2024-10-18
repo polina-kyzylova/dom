@@ -6,8 +6,8 @@ export const theme = {
     green: "#28733B ",
     lightRed: "#F95C3B",
     red: "#E05335",
-    lightYellow: "#DED065",
-    yellow: "#BDB04B",
+    lightYellow: "#E6D659",
+    yellow: "#CEBE47",
 
     disabled: "#a4a4a4",
   },

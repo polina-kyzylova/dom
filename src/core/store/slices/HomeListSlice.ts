@@ -3,7 +3,7 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 
 export enum HomeType {
   apart = 'Apartment',
-  house = 'House,'
+  house = 'House'
 }
 
 export interface IHomeList {

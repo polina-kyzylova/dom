@@ -1,61 +1,118 @@
-import React from "react";
-import Radio from "@mui/material/Radio";
-import { theme } from "../../../core/theme/index";
-import * as S from './styled';
-
-
-const RadioTheme = {
-  color: theme.colors.disabled,
-  "&.Mui-checked": {
-    color: theme.colors.lightRed,
-  },
-};
-
+import React, { useState } from "react";
+import * as S from "./styled";
+import { useDispatch } from "react-redux";
+import { useAppSelector } from "../../../core/hooks/hooks";
+import {
+  changeTemperMode,
+  TemperMode,
+} from "../../../core/store/slices/HomeSlice";
+import { Title } from "../../../global";
+import Termometer from "../../molecules/Termometer";
 
 export default function TemperatureUnit() {
-  const [selectedValue, setSelectedValue] = React.useState("auto");
+  const mode = useAppSelector((state) => state.home.temper_mode);
+  const [selectedValue, setSelectedValue] = useState<TemperMode>(mode);
+  const dispatch = useDispatch();
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSelectedValue(event.target.value);
+  const handleChange = (value: TemperMode) => {
+    setSelectedValue(value);
+    dispatch(
+      changeTemperMode({
+        temper_mode: value,
+      })
+    );
   };
 
-  const controlProps = (item: string) => ({
-    checked: selectedValue === item,
-    onChange: handleChange,
-    value: item,
-    inputProps: { "aria-label": item },
-  });
+  const checkMode = (currentMode: TemperMode): boolean => {
+    if (selectedValue === currentMode) return true;
+    else return false;
+  };
 
   return (
     <S.TemperCard>
-      <div>Chart</div>
+      <Title alignSelf="center" fontSize="small">
+        Heating
+      </Title>
 
-      <div>
+      <Termometer />
+
+      <S.TemperCard>
         <p>Mode</p>
-        <div>
-          <Radio id="auto" {...controlProps("auto")} sx={RadioTheme} />
-          <S.RadioLabel isChecked={(selectedValue === "auto")!!} htmlFor="auto">
-            Auto
-          </S.RadioLabel>
 
-          <Radio id="custom" {...controlProps("custom")} sx={RadioTheme} />
-          <S.RadioLabel
-            isChecked={(selectedValue === "custom")!!}
-            htmlFor="custom"
-          >
-            Custom
-          </S.RadioLabel>
+        <S.ModeGroup>
+          <S.Container>
+            <S.TemperButton
+              id="auto"
+              checked={checkMode(TemperMode.auto)}
+              onClick={() => handleChange(TemperMode.auto)}
+            >
+              <S.AutoIcon checked={checkMode(TemperMode.auto)} />
+            </S.TemperButton>
+            <S.ModeLabel checked={checkMode(TemperMode.auto)} htmlFor="auto">
+              Auto
+            </S.ModeLabel>
+          </S.Container>
 
+          <S.Container>
+            <S.TemperButton
+              id="custom"
+              checked={checkMode(TemperMode.custom)}
+              onClick={() => handleChange(TemperMode.custom)}
+            >
+              <S.CustomIcon checked={checkMode(TemperMode.custom)} />
+            </S.TemperButton>
+            <S.ModeLabel
+              checked={checkMode(TemperMode.custom)}
+              htmlFor="custom"
+            >
+              Custom
+            </S.ModeLabel>
+          </S.Container>
 
-          <Radio id="off" {...controlProps("off")} sx={RadioTheme} />
-          <S.RadioLabel
-            isChecked={(selectedValue === "off")!!}
-            htmlFor="off"
-          >
-            Off
-          </S.RadioLabel>
-        </div>
-      </div>
+          <S.Container>
+            <S.TemperButton
+              id="off"
+              checked={checkMode(TemperMode.off)}
+              onClick={() => handleChange(TemperMode.off)}
+            >
+              <S.OffIcon checked={checkMode(TemperMode.off)} />
+            </S.TemperButton>
+
+            <S.ModeLabel checked={checkMode(TemperMode.off)} htmlFor="off">
+              Off
+            </S.ModeLabel>
+          </S.Container>
+        </S.ModeGroup>
+      </S.TemperCard>
     </S.TemperCard>
   );
 }
+
+/*
+      <GaugeChart
+        id="1"
+        nrOfLevels={1}
+        arcsLength={[1]}
+        colors={["green"]}
+        cornerRadius={3}
+        textColor={"transparent"}
+        needleColor={"transparent"}
+        needleBaseColor={"transparent"}
+        arcWidth={0.1}
+      />
+*/
+
+/*
+
+      <GaugeChart
+        id='1'
+        nrOfLevels={3}
+        arcsLength={[0.25, 0.5, 0.25]}
+        colors={["#2d74da", "#1f57a4", "#25467a"]}
+        arcPadding={0.02}
+        percent={percent}
+        textColor={"#000000"}
+        needleColor={"#5392ff"}
+        formatTextValue={(value: any) => value}
+      />
+*/
