@@ -6,47 +6,44 @@ import { theme } from "../../core/theme/index";
 
 const Container = styled.div`
   width: 100%;
-  height: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
-  //border: 1px solid red;
 `;
 
 const OuterGaugeContainer = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
+  width: 90%;
+  height: 80%;
   position: absolute;
-  top: 8%;
-  left: 0;
   z-index: 5;
+  top: 0;
 `;
 
 const InnerGaugeContainer = styled.div`
   width: 100%;
-  display: flex;
-  align-items: center;
   position: absolute;
-  top: 30%;
-  left: 0;
   z-index: 4;
+  display: flex;
+  justify-content: center;
 `;
 
-export default function Termometer() {
+export interface ITermometer {
+  value: number;
+}
+
+export default function Termometer({ value }: ITermometer) {
   return (
     <Container>
       <OuterGaugeContainer>
         <Gauge
-          width={390}
-          height={270}
-          value={60}
+          value={value}
           startAngle={-90}
           endAngle={90}
           innerRadius="90%"
           cornerRadius="40%"
           sx={() => ({
-            [`& .${gaugeClasses.valueText}`]: {
-              fontSize: 40,
-            },
             [`& .${gaugeClasses.valueArc}`]: {
               fill: theme.colors.lightYellow,
             },
@@ -55,23 +52,29 @@ export default function Termometer() {
             },
           })}
           text={""}
+          margin={{ top: 0, bottom: 0, left: 0, right: 0 }}
         />
       </OuterGaugeContainer>
       <InnerGaugeContainer>
         <GaugeChart
           id="gauge-chart1"
           nrOfLevels={25}
-          percent={0.8}
+          percent={value / 100}
           textColor={"#000000"}
           arcPadding={0.07}
           cornerRadius={0}
           arcWidth={0.2}
-          formatTextValue={(value) => `${value}°C`}
+          formatTextValue={() => `${value}°C`}
           needleColor={theme.colors.disabled}
           needleBaseColor={"#33333"}
           colors={["black"]}
+          animate={false}
         />
       </InnerGaugeContainer>
     </Container>
   );
 }
+
+//           width={390}
+// height={200}
+//           style={{ width: "auto", height: "auto" }}

@@ -6,10 +6,16 @@ import BackHandIcon from "@mui/icons-material/BackHand";
 import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
 
 export const TemperCard = styled.div`
+  display: grid;
+  grid-template-rows: min-content 1fr 1fr min-content;
+  gap: 1rem;
+`;
+
+export const Mode = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 1em;
+  gap: 1rem;
 `;
 
 export interface IChecked {

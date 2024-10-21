@@ -8,6 +8,8 @@ import {
 } from "../../../core/store/slices/HomeSlice";
 import { Title } from "../../../global";
 import Termometer from "../../molecules/Termometer";
+import HeatingEqualizer from "../../molecules/HeatingEqualizer/HeatingEqualizer";
+import TemperModeButtons from "../../molecules/TemperModeButtons";
 
 export default function TemperatureUnit() {
   const mode = useAppSelector((state) => state.home.temper_mode);
@@ -28,15 +30,27 @@ export default function TemperatureUnit() {
     else return false;
   };
 
+  const showMode = (): React.ReactElement => {
+    if (selectedValue === TemperMode.auto) {
+      return <TemperModeButtons />
+    } else if (selectedValue === TemperMode.custom) {
+      return <HeatingEqualizer />
+    } else {
+      return <p>The heating is off</p>
+    }
+  }
+
   return (
     <S.TemperCard>
       <Title alignSelf="center" fontSize="small">
         Heating
       </Title>
 
-      <Termometer />
+      <Termometer value={21} />
 
-      <S.TemperCard>
+      {showMode()}
+
+      <S.Mode>
         <p>Mode</p>
 
         <S.ModeGroup>
@@ -83,36 +97,7 @@ export default function TemperatureUnit() {
             </S.ModeLabel>
           </S.Container>
         </S.ModeGroup>
-      </S.TemperCard>
+      </S.Mode>
     </S.TemperCard>
   );
 }
-
-/*
-      <GaugeChart
-        id="1"
-        nrOfLevels={1}
-        arcsLength={[1]}
-        colors={["green"]}
-        cornerRadius={3}
-        textColor={"transparent"}
-        needleColor={"transparent"}
-        needleBaseColor={"transparent"}
-        arcWidth={0.1}
-      />
-*/
-
-/*
-
-      <GaugeChart
-        id='1'
-        nrOfLevels={3}
-        arcsLength={[0.25, 0.5, 0.25]}
-        colors={["#2d74da", "#1f57a4", "#25467a"]}
-        arcPadding={0.02}
-        percent={percent}
-        textColor={"#000000"}
-        needleColor={"#5392ff"}
-        formatTextValue={(value: any) => value}
-      />
-*/
