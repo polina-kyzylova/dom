@@ -12,7 +12,7 @@ export const TabPanel = styled(BaseTabPanel)`
 export const TabsList = styled(BaseTabsList)`
   width: 40vw;
   background-color: ${theme.colors.lightGray};
-  border-radius: 12px;
+  border-radius: 25px;
   margin-bottom: 16px;
   display: flex;
   align-items: center;
@@ -29,7 +29,7 @@ export const Tab = styled(BaseTab)`
   padding: 10px 12px;
   margin: 6px;
   border: none;
-  border-radius: 7px;
+  border-radius: 25px;
   display: flex;
   justify-content: center;
   transition: all 0.3s ease-in-out;

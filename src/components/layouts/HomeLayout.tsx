@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import TemperatureUnit from "../organisms/TemperatureUnit/TemperatureUnit";
-import PowerUnit from "../organisms/PowerUnit";
+import PowerUnit from "../organisms/PowerUnit/PowerUnit";
 import * as S from "../../global";
 
 const LayoutContainer = styled.div`
