@@ -6,12 +6,14 @@ export const theme = {
     green: "#28733B ",
     lightRed: "#F95C3B",
     red: "#E05335",
+    lightYellow: "#E6D659",
+    yellow: "#CEBE47",
+
+    disabled: "#a4a4a4",
   },
   sizes: {
-    common: {
-      borderRadius: ".3rem",
-      fontSizePrimary: "1.3rem",
-      fontSizeSecondary: "1.2rem",
-    },
+    borderRadius: "10px",
+    largeSpace: "1.5rem",
+    smallSpace: "1rem",
   },
 };

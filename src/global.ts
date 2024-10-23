@@ -71,16 +71,29 @@ export const BaseButton = styled.button`
     props.color === "primary" ? theme.colors.lightRed : theme.colors.gray};
 `;
 
+/*
+  background-color: ${theme.colors.lightGray};
+  padding: ${theme.sizes.largeSpace};
+  border-radius: ${theme.sizes.borderRadius};
+*/
+
 export const BaseCard = css`
   background-color: ${theme.colors.lightGray};
   border-radius: 10px;
   padding: 2rem;
 `;
 
-export const Title = styled.h3`
-  font-size: 2rem;
+export interface TitleVariant {
+  alignSelf?: "center" | "flex-start" | "flex-end";
+  fontSize?: "large" | "small";
+}
+
+export const Title = styled.h3<TitleVariant>`
   font-weight: 400;
   padding-bottom: 0.4rem;
+  align-self: ${({ alignSelf = "auto" }) => alignSelf};
+  font-size: ${({ fontSize }) =>
+    fontSize === "large" ? "2rem" : fontSize === "small" ? "1.7rem" : "2rem"};
 `;
 
 export const ModalActions = styled.div`

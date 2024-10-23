@@ -4,7 +4,7 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "./core/theme/index";
 
 import OnboardingPage from "./components/pages/OnboardingPage";
-import HomePage from "./components/pages/HomePage";
+import HomePage from "./components/pages/HomePage/HomePage";
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<OnboardingPage />} />
           <Route path="/home/:home_id" element={<HomePage />} />
-          <Route path='*' element={<h2>Такой страницы не существует :(</h2>} />
+          <Route path="*" element={<h2>Такой страницы не существует :(</h2>} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

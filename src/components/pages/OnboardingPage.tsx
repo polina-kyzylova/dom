@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import * as S from "../../global";
 import MainTitle from "../molecules/MainTitle";
@@ -23,13 +23,13 @@ const HomeContainer = styled.div`
 export default function OnboardingPage() {
   const homeList = useAppSelector((state) => state.homeList);
 
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const handleClickOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   return (
     <S.PageContainer>
-      <MainTitle />
+      <MainTitle alignSelf="center" fontSize="large"/>
       <Tooltip title="Add new home">
         <S.BaseButton color="primary" onClick={() => handleClickOpen()}>
           <AddIcon />
