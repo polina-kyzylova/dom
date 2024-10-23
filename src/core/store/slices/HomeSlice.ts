@@ -12,7 +12,7 @@ export interface HomeState {
 }
 
 const initialState: HomeState = {
-  temper_mode: TemperMode.auto,
+  temper_mode: TemperMode.custom,
 };
 
 export const homeSlice = createSlice({

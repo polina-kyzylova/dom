@@ -9,7 +9,7 @@ import * as S from "./styled";
 
 export default function HeatingEqualizer() {
   // Инициализация состояния с массивом значений
-  const [items, setItems] = useState([10, 21, 15, 7]);
+  const [items, setItems] = useState([9, 21, 15, 7]);
 
   // Функция для изменения элемента массива
   const updateItem = (index: number, newValue: number) => {

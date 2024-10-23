@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import TemperatureUnit from "../organisms/TemperatureUnit/TemperatureUnit";
+import PowerUnit from "../organisms/PowerUnit";
 import * as S from "../../global";
 
 const LayoutContainer = styled.div`
@@ -32,7 +33,9 @@ export default function HomeLayout() {
         <TemperatureUnit />
       </ColumnItem>
       <ColumnItem>Hi 2</ColumnItem>
-      <RowItem>Hi 3</RowItem>
+      <RowItem>
+        <PowerUnit />
+      </RowItem>
       <Item>
         <p>Security control</p>
       </Item>
