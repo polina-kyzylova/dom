@@ -4,9 +4,8 @@ import * as S from "./styled";
 import MainTitle from "../../molecules/MainTitle";
 import { Tabs } from "@mui/base/Tabs";
 import WestIcon from "@mui/icons-material/West";
-import { useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import HeaderActions from "../../molecules/HeaderActions";
-import HomeLayout from "../../layouts/HomeLayout";
 
 
 export default function HomePage() {
@@ -39,11 +38,7 @@ export default function HomePage() {
           <HeaderActions />
         </S.HomeHeader>
 
-        <S.TabPanel value={0}>
-          <HomeLayout />
-        </S.TabPanel>
-        <S.TabPanel value={1}>Profile page</S.TabPanel>
-        <S.TabPanel value={2}>Language page</S.TabPanel>
+        <Outlet />
       </S.Container>
     </Tabs>
   );
