@@ -104,3 +104,31 @@ export const ModalActions = styled.div`
   gap: 1rem;
   padding-top: 2rem;
 `;
+
+
+export interface ITabButton {
+  selected: true | false;
+}
+
+export const BaseTabBtn = styled.button<ITabButton>`
+  width: 100%;
+  height: 100%;
+  outline: none;
+  border: none;
+  color: ${({ selected }) => (selected ? "black" : "white")};
+  cursor: pointer;
+  padding: 10px 12px;
+  margin: 6px;
+  border-radius: 25px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  background-color: ${({ selected }) =>
+    selected ? theme.colors.lightGray : "transparent"};
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    background-color: ${({ selected }) =>
+      selected ? theme.colors.lightGray : theme.colors.disabled};
+  }
+`;
+

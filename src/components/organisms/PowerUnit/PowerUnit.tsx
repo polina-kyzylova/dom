@@ -3,6 +3,8 @@ import * as G from "../../../global";
 import * as S from "./styled";
 import { BarChart } from "@mui/x-charts/BarChart";
 import { theme } from "../../../core/theme/index";
+import { BaseTabBtn } from "../../../global";
+import { Tabs } from '@mui/base/Tabs';
 
 interface IDataItem {
   itemX: string;
@@ -72,26 +74,28 @@ export default function PowerUnit() {
       <S.Header>
         <G.Title fontSize="small">Energy (kwh)</G.Title>
 
-        <S.TabsList>
-          <S.TabBtn
-            selected={period === "Week"}
-            onClick={() => setPeriod("Week")}
-          >
-            Week
-          </S.TabBtn>
-          <S.TabBtn
-            selected={period === "Month"}
-            onClick={() => setPeriod("Month")}
-          >
-            Month
-          </S.TabBtn>
-          <S.TabBtn
-            selected={period === "Year"}
-            onClick={() => setPeriod("Year")}
-          >
-            Year
-          </S.TabBtn>
-        </S.TabsList>
+        <Tabs>
+          <S.TabsList>
+            <BaseTabBtn
+              selected={period === "Week"}
+              onClick={() => setPeriod("Week")}
+            >
+              Week
+            </BaseTabBtn>
+            <BaseTabBtn
+              selected={period === "Month"}
+              onClick={() => setPeriod("Month")}
+            >
+              Month
+            </BaseTabBtn>
+            <BaseTabBtn
+              selected={period === "Year"}
+              onClick={() => setPeriod("Year")}
+            >
+              Year
+            </BaseTabBtn>
+          </S.TabsList>
+        </Tabs>
       </S.Header>
 
       <BarChart
@@ -109,7 +113,6 @@ export default function PowerUnit() {
             dataKey: "amount",
             label: "Energy consumption:",
             valueFormatter: (v) => (v === null ? "" : `${v} kwh`),
-            
           },
         ]}
         grid={{ horizontal: true }}

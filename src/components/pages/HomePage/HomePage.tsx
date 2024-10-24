@@ -2,44 +2,63 @@ import React from "react";
 import { Title } from "../../../global";
 import * as S from "./styled";
 import MainTitle from "../../molecules/MainTitle";
-import { Tabs } from "@mui/base/Tabs";
 import WestIcon from "@mui/icons-material/West";
 import { Outlet, useNavigate } from "react-router-dom";
 import HeaderActions from "../../molecules/HeaderActions";
-
+import { useLocation } from "react-router-dom";
+import { Tabs } from "@mui/base/Tabs";
 
 export default function HomePage() {
+  const location = useLocation();
   const navigate = useNavigate();
 
+  let item = location.pathname.split("/").pop();
+
   return (
-    <Tabs defaultValue={0}>
-      <S.Container>
-        <S.HomeHeader>
-          <WestIcon
-            onClick={() => navigate("/")}
-            sx={{ cursor: "pointer" }}
-            fontSize="large"
-          />
+    <S.Container>
+      <S.HomeItem>
+        <WestIcon
+          onClick={() => navigate("/")}
+          sx={{ cursor: "pointer" }}
+          fontSize="large"
+        />
+
+        <Tabs>
           <S.TabsList>
-            <S.Tab value={0}>Home</S.Tab>
-            <S.Tab value={1}>Parking</S.Tab>
-            <S.Tab value={2}>Garden</S.Tab>
+            <S.TabBtn
+              selected={item !== "parking" && item !== "garden"}
+              onClick={() => navigate("")}
+            >
+              Home
+            </S.TabBtn>
+            <S.TabBtn
+              selected={item === "parking"}
+              onClick={() => navigate("./parking")}
+            >
+              Parking
+            </S.TabBtn>
+            <S.TabBtn
+              selected={item === "garden"}
+              onClick={() => navigate("./garden")}
+            >
+              Garden
+            </S.TabBtn>
           </S.TabsList>
+        </Tabs>
 
-          <MainTitle fontSize="small" />
-        </S.HomeHeader>
+        <MainTitle fontSize="small" />
+      </S.HomeItem>
 
-        <S.HomeHeader>
-          <div>
-            <Title>My Title</Title>
-            <p>my address</p>
-          </div>
+      <S.HomeItem>
+        <div>
+          <Title>My Title</Title>
+          <p>my address</p>
+        </div>
 
-          <HeaderActions />
-        </S.HomeHeader>
+        <HeaderActions />
+      </S.HomeItem>
 
-        <Outlet />
-      </S.Container>
-    </Tabs>
+      <Outlet />
+    </S.Container>
   );
 }
