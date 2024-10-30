@@ -1,50 +1,31 @@
 import styled from "styled-components";
 import { TabsList as BaseTabsList } from "@mui/base/TabsList";
-import { Tab as BaseTab, tabClasses } from "@mui/base/Tab";
-import { TabPanel as BaseTabPanel } from "@mui/base/TabPanel";
 import { theme } from "../../../core/theme/index";
+import { BaseTabBtn } from "../../../global";
 
-export const TabPanel = styled(BaseTabPanel)`
-  width: 100%;
-  height: 100%;
-`;
 
 export const TabsList = styled(BaseTabsList)`
   width: 40vw;
   background-color: ${theme.colors.lightGray};
-  border-radius: 12px;
+  border-radius: 25px;
   margin-bottom: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
-export const Tab = styled(BaseTab)`
-  color: ${theme.colors.disabled};
-  cursor: pointer;
-  font-size: 0.875rem;
-  font-weight: 600;
-  background-color: transparent;
-  width: 100%;
-  padding: 10px 12px;
-  margin: 6px;
-  border: none;
-  border-radius: 7px;
-  display: flex;
-  justify-content: center;
-  transition: all 0.3s ease-in-out;
+export const TabBtn = styled(BaseTabBtn)`
+  color: ${({ selected }) => (selected ? "black" : theme.colors.disabled)};
+  background-color: ${({ selected }) =>
+    selected ? theme.colors.lightRed : "transparent"};
 
   &:hover {
-    background-color: ${theme.colors.gray};
-  }
-
-  &.${tabClasses.selected} {
-    background-color: ${theme.colors.lightRed};
-    color: black;
+    background-color: ${({ selected }) =>
+      selected ? theme.colors.lightRed : theme.colors.gray};
   }
 `;
 
-export const HomeHeader = styled.div`
+export const HomeItem = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
