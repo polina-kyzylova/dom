@@ -118,7 +118,7 @@ export default function PowerUnit() {
         grid={{ horizontal: true }}
         borderRadius={15}
         colors={[theme.colors.lightYellow]}
-        skipAnimation={true}
+        //skipAnimation={true}
         slotProps={{ legend: { hidden: true } }}
       />
     </S.Container>

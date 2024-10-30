@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import TemperatureUnit from "../organisms/TemperatureUnit/TemperatureUnit";
 import PowerUnit from "../organisms/PowerUnit/PowerUnit";
+import AutomationUnit from "../organisms/AutomationUnit/AutomationUnit";
 import * as S from "../../global";
 
 const LayoutContainer = styled.div`
@@ -30,20 +31,22 @@ export default function HomeLayout() {
   return (
     <LayoutContainer>
       <ColumnItem>
+        <AutomationUnit />
+      </ColumnItem>
+      <ColumnItem>
         <TemperatureUnit />
       </ColumnItem>
-      <ColumnItem>Hi 2</ColumnItem>
       <RowItem>
         <PowerUnit />
       </RowItem>
       <Item>
-        <p>Security control</p>
+        <p>Rooms</p>
       </Item>
       <Item>
         <p>Smart devices</p>
       </Item>
       <Item>
-        <p>Communal services</p>
+        <p>Payments & Documents</p>
       </Item>
     </LayoutContainer>
   );

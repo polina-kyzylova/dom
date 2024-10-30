@@ -74,7 +74,3 @@ export default function Termometer({ value }: ITermometer) {
     </Container>
   );
 }
-
-//           width={390}
-// height={200}
-//           style={{ width: "auto", height: "auto" }}
