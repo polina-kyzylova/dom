@@ -2,7 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import TemperatureUnit from "../organisms/TemperatureUnit/TemperatureUnit";
 import PowerUnit from "../organisms/PowerUnit/PowerUnit";
+<<<<<<< HEAD
 import AutomationUnit from "../organisms/AutomationUnit/AutomationUnit";
+=======
+>>>>>>> master
 import * as S from "../../global";
 
 const LayoutContainer = styled.div`
